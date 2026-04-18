@@ -30,25 +30,28 @@ Inteligentny asystent do analizy dokumentów PDF z wykorzystaniem Retrieval-Augm
 Windows: https://github.com/UB-Mannheim/tesseract/wiki
 Linux: sudo apt install tesseract-ocr
 macOS: brew install tesseract
+```
 
 **Poppler:**
 ```bash
 Windows: https://github.com/oschwartz10612/poppler-windows/releases/
 Linux: sudo apt install poppler-utils
 macOS: brew install poppler
+```
 
 ### Instalacja projektu
 
 ```bash
-Zainstaluj zależności
+# Zainstaluj zależności
 pip install -r requirements.txt
 
-Skopiuj .env.example do .env i dodaj klucz
+# Skopiuj .env.example do .env i dodaj klucz
 cp .env.example .env
 
-Edytuj .env i wstaw GROQ_API_KEY
-Uruchom aplikację
+# Edytuj .env i wstaw GROQ_API_KEY
+# Uruchom aplikację
 streamlit run app.py
+```
 
 ### Konfiguracja API
 
@@ -56,7 +59,9 @@ Uzyskaj darmowy klucz Groq:
 1. [console.groq.com](https://console.groq.com)
 2. Wygeneruj API key
 3. Dodaj do `.env`:
+```
 GROQ_API_KEY=gsk_twój_klucz
+```
 
 ## 📖 Użycie
 
@@ -76,7 +81,11 @@ GROQ_API_KEY = "gsk_twój_klucz"
 
 ## 👨‍💻 Autor
 
+**[Lukkaszsz](https://github.com/Lukkaszsz/pdf-rag-chatbot)**
+
 **Stack:** Python • Streamlit • LangChain • RAG • Vector DB • NLP • OCR
+
+---
 
 ## ⚙️ Ustawienia – Chunkowanie i Modele
 
@@ -94,6 +103,8 @@ W panelu bocznym możesz dostosować dwa parametry:
 - 📚 Długie raporty, książki → chunk **1500–2000**, overlap **300–400**
 - 🔍 Pytania o szczegóły techniczne → mniejszy chunk (więcej precyzji)
 - 💬 Pytania ogólne/podsumowania → większy chunk (więcej kontekstu)
+
+### Modele LLM
 
 | Wybór w UI | Rzeczywisty model (Groq) | Charakterystyka |
 |------------|--------------------------|-----------------|
