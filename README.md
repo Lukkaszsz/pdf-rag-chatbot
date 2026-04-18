@@ -15,7 +15,7 @@ Inteligentny asystent do analizy dokumentów PDF z wykorzystaniem Retrieval-Augm
 ## 🛠️ Technologie
 
 - **Frontend:** Streamlit
-- **LLM:** Groq API (Llama 3.3, Qwen, DeepSeek)
+- **LLM:** Groq API (Llama 3.1, Llama 3.3, Llama 4, Qwen3)
 - **Embeddings:** Sentence-Transformers
 - **Vector DB:** ChromaDB
 - **RAG:** LangChain
