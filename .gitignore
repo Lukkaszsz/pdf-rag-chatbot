@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.local
+
+# Data i temp
+*.pdf
+*.csv
+data/
+pdf_images/
+chroma_db/
+*.db
+
+# Temp text files (ale NIE requirements.txt!)
+histori*.txt
+debug*.txt
+output*.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Explicite DODAJ te pliki (nadpisuje *.txt)
+!requirements.txt
+!packages.txt
+!README.md
