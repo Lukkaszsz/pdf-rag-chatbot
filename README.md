@@ -111,6 +111,6 @@ W panelu bocznym możesz dostosować dwa parametry:
 | ⚡ `llama-3.1-8b (szybki)` | `llama-3.1-8b-instant` | Najszybszy, do prostych pytań |
 | ⚖️ `qwen3-32b (zbalansowany)` | `qwen/qwen3-32b` | Dobry balans jakość/szybkość |
 | 🏆 `llama-3.3-70b (najlepszy)` | `llama-3.3-70b-versatile` | Najlepsza jakość odpowiedzi |
-| 🖼️ `llama-4-maverick (multimodalny)` | `llama-4-maverick-17b` | Obsługa obrazów i tabel |
+| 🖼️ `llama-3.2-90b (vision)` | `llama-3.2-90b-vision-preview` | Obsługa obrazów i tabel |
 
 > Wszystkie modele działają przez **Groq API** – wymagają klucza `GROQ_API_KEY`.

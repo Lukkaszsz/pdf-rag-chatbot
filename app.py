@@ -123,7 +123,7 @@ with st.sidebar:
         "⚡ llama-3.1-8b (szybki)",
         "⚖️ qwen3-32b (zbalansowany)",
         "🏆 llama-3.3-70b (najlepszy)",
-        "🖼️ llama-4-maverick (multimodalny)",
+        "🖼️ llama-3.2-90b (vision)",
     ],
     index=0,
     help="Wszystkie modele działają przez Groq API.\n"
@@ -272,8 +272,8 @@ def get_llm_client():
         model_name = "qwen/qwen3-32b"
     elif key == "🏆 llama-3.3-70b (najlepszy)":
         model_name = "llama-3.3-70b-versatile"
-    elif key == "🖼️ llama-4-maverick (multimodalny)":
-        model_name = "meta-llama/llama-4-maverick-17b-128e-instruct"
+    elif key == "🖼️ llama-3.2-90b (vision)":
+        model_name = "llama-3.2-90b-vision-preview"
     else:
         model_name = "llama-3.1-8b-instant"
     return client, model_name
@@ -1421,7 +1421,7 @@ st.markdown(
 <div style='text-align: center; color: #666; padding: 20px;'>
     <p>🚀 <strong>PDF RAG Chatbot AI</strong> - Projekt portfolio wykorzystujący najnowsze technologie AI</p>
     <p>🛠️ Technologie: Streamlit • LangChain • Hugging Face • OpenAI-compatible • RAG • Vector Database</p>
-    <p>👨‍💻 Stworzony przez: <a href="https://github.com/TWOJ-USERNAME" target="_blank">GitHub</a></p>
+    <p>👨‍💻 Stworzony przez: <a href="https://github.com/Lukkaszsz/pdf-rag-chatbot" target="_blank">GitHub</a></p>
 </div>
 """,
     unsafe_allow_html=True,
