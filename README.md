@@ -1,116 +1,138 @@
-# 📚 PDF RAG Chatbot AI
+# 📄 PDF RAG Chatbot AI
 
-Inteligentny asystent do analizy dokumentów PDF z wykorzystaniem Retrieval-Augmented Generation (RAG), hybrid search i multimodalnego przetwarzania.
+**Intelligent assistant for analyzing PDF documents using Retrieval-Augmented Generation (RAG), hybrid search, and multimodal processing**
 
-## 🚀 Funkcje
+---
 
-- 📄 Multi-PDF Upload - Analiza wielu dokumentów jednocześnie
-- 💬 Inteligentny Czat - Q&A na podstawie treści dokumentów
-- 🔍 Hybrid Search - BM25 + Vector Similarity
-- 🖼️ Multimodal OCR - Obsługa skanowanych PDF
-- 📊 Automatyczne Wykresy - Wizualizacja danych z PDF
-- 📥 Export Historii - CSV/TXT
-- ✅ Feedback System - Ocena jakości odpowiedzi
+## ✨ Features
 
-## 🛠️ Technologie
+- **Multi-PDF Upload** - Analyze multiple documents simultaneously
+- **Intelligent Chat** - Q&A based on document content
+- **Hybrid Search** - BM25 + Vector Similarity
+- **Multimodal OCR** - Support for scanned PDFs
+- **Automatic Charts** - Data visualization from PDFs
+- **History Export** - CSV/TXT
+- **Feedback System** - Response quality rating
 
-- **Frontend:** Streamlit
-- **LLM:** Groq API (Llama 3.1, Llama 3.3, Llama 4, Qwen3)
-- **Embeddings:** Sentence-Transformers
-- **Vector DB:** ChromaDB
-- **RAG:** LangChain
-- **OCR:** Tesseract + pdf2image
+---
 
-## 📦 Instalacja
+## 🛠️ Technologies
 
-### Wymagania systemowe
+- **Frontend**: Streamlit
+- **LLM**: Groq API (Llama 3.1, Llama 3.3, Llama 4, Qwen3)
+- **Embeddings**: Sentence-Transformers
+- **Vector DB**: ChromaDB
+- **RAG**: LangChain
+- **OCR**: Tesseract + pdf2image
+
+---
+
+## 📋 Installation
+
+### System Requirements
 
 **Tesseract OCR:**
 ```bash
-Windows: https://github.com/UB-Mannheim/tesseract/wiki
-Linux: sudo apt install tesseract-ocr
-macOS: brew install tesseract
+# Windows
+https://github.com/UB-Mannheim/tesseract/wiki
+
+# Linux
+sudo apt install tesseract-ocr
+
+# macOS
+brew install tesseract
 ```
 
 **Poppler:**
 ```bash
-Windows: https://github.com/oschwartz10612/poppler-windows/releases/
-Linux: sudo apt install poppler-utils
-macOS: brew install poppler
+# Windows
+https://github.com/oschwartz10612/poppler-windows/releases
+
+# Linux
+sudo apt install poppler-utils
+
+# macOS
+brew install poppler
 ```
 
-### Instalacja projektu
+### Project Installation
 
 ```bash
-# Zainstaluj zależności
+# Install dependencies
 pip install -r requirements.txt
 
-# Skopiuj .env.example do .env i dodaj klucz
+# Copy .env.example to .env and add key
 cp .env.example .env
 
-# Edytuj .env i wstaw GROQ_API_KEY
-# Uruchom aplikację
-streamlit run app.py
+# Edit .env and insert GROQ_API_KEY
 ```
 
-### Konfiguracja API
+### API Configuration
 
-Uzyskaj darmowy klucz Groq:
-1. [console.groq.com](https://console.groq.com)
-2. Wygeneruj API key
-3. Dodaj do `.env`:
+**Get free Groq key:**
+1. https://console.groq.com
+2. Generate API key
+3. Add to `.env`:
 ```
-GROQ_API_KEY=gsk_twój_klucz
+GROQ_API_KEY=gsk_...your_key
 ```
-
-## 📖 Użycie
-
-1. **Upload PDF** - Wgraj dokumenty
-2. **Indeksuj** - Kliknij przycisk indeksowania
-3. **Zadawaj pytania** - Czatuj z dokumentami
-4. **Oceń odpowiedzi** - ✅ Trafione / ❌ Chybione
-
-## 🚀 Deployment na Streamlit Cloud
-
-1. Push do GitHub
-2. [share.streamlit.io](https://share.streamlit.io) → New app
-3. W Secrets dodaj:
-```toml
-GROQ_API_KEY = "gsk_twój_klucz"
-```
-
-## 👨‍💻 Autor
-
-**[Lukkaszsz](https://github.com/Lukkaszsz/pdf-rag-chatbot)**
-
-**Stack:** Python • Streamlit • LangChain • RAG • Vector DB • NLP • OCR
 
 ---
 
-## ⚙️ Ustawienia – Chunkowanie i Modele
+## 🚀 Usage
 
-### Chunkowanie (podział dokumentu)
+1. **Upload PDF** - Upload documents
+2. **Index** - Click index button
+3. **Ask questions** - Chat with documents
+4. **Rate responses** - ✅ Accurate / ❌ Inaccurate
 
-W panelu bocznym możesz dostosować dwa parametry:
+---
 
-| Parametr | Domyślnie | Opis |
-|----------|-----------|------|
-| **Rozmiar chunku** | 1000 znaków | Większy chunk = więcej kontekstu, ale większy "szum" w odpowiedzi |
-| **Overlap** | 200 znaków | Nakładanie sąsiednich chunków – zapobiega utracie sensu na granicy fragmentów |
+## ☁️ Deployment on Streamlit Cloud
 
-**Kiedy zmieniać?**
-- 📄 Krótkie dokumenty, faktury, notatki → chunk **500–800**, overlap **100**
-- 📚 Długie raporty, książki → chunk **1500–2000**, overlap **300–400**
-- 🔍 Pytania o szczegóły techniczne → mniejszy chunk (więcej precyzji)
-- 💬 Pytania ogólne/podsumowania → większy chunk (więcej kontekstu)
+1. Push to GitHub
+2. https://share.streamlit.io → "New app"
+3. In **Secrets** add:
+```toml
+GROQ_API_KEY = "gsk_...your_key"
+```
 
-### Modele LLM
+---
 
-| Wybór w UI | Rzeczywisty model (Groq) | Charakterystyka |
-|------------|--------------------------|-----------------|
-| ⚡ `llama-3.1-8b (szybki)` | `llama-3.1-8b-instant` | Najszybszy, do prostych pytań |
-| ⚖️ `qwen3-32b (zbalansowany)` | `qwen/qwen3-32b` | Dobry balans jakość/szybkość |
-| 🏆 `llama-3.3-70b (najlepszy)` | `llama-3.3-70b-versatile` | Najlepsza jakość odpowiedzi |
-| 🖼️ `llama-3.2-90b (vision)` | `llama-3.2-90b-vision-preview` | Obsługa obrazów i tabel |
+## ⚙️ Settings: Chunking and Models
 
-> Wszystkie modele działają przez **Groq API** – wymagają klucza `GROQ_API_KEY`.
+### Chunking (document splitting)
+
+You can adjust two parameters in the side panel:
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| **Chunk size** | 1000 characters | Larger chunk = more context, but more noise in response |
+| **Overlap** | 200 characters | Overlap of adjacent chunks prevents loss of meaning at fragment boundaries |
+
+**When to change?**
+- Short documents, invoices, notes → chunk 500-800, overlap 100
+- Long reports, books → chunk 1500-2000, overlap 300-400
+- Questions about technical details → smaller chunk = more precision
+- General questions/summaries → larger chunk = more context
+
+### LLM Models
+
+| UI selection | Actual Groq model | Characteristics |
+|--------------|-------------------|-----------------|
+| **llama-3.1-8b (fast)** | llama-3.1-8b-instant | Fastest, for simple questions |
+| **qwen3-32b (balanced)** | qwen/qwen3-32b | Good balance quality/speed |
+| **llama-3.3-70b (best)** | llama-3.3-70b-versatile | Best answer quality |
+| **llama-3.2-90b (vision)** | llama-3.2-90b-vision-preview | Supports images and tables |
+
+All models run through Groq API (require `GROQ_API_KEY`).
+
+---
+
+## 👤 Author
+
+**Lukkaszsz**
+
+**Stack:** Python · Streamlit · LangChain · RAG · Vector DB · NLP · OCR
+
+---
