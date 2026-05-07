@@ -101,7 +101,7 @@ with st.sidebar:
         index=0,
         help="All models run through Groq API."
     )
-    top_k_context = st.selectbox("How many documents in context?", [2, 3, 4, 5, 6], index=1)
+    top_k_context = st.selectbox("How many documents in context?", [1, 2, 3, 4, 5, 6], index=2)
     st.markdown("**Chunking (tunable)**")
     chunk_size = st.slider("Chunk size (characters)", min_value=500, max_value=2000, value=1000, step=100)
     chunk_overlap = st.slider("Overlap between chunks (characters)", min_value=0, max_value=500, value=200, step=50)
@@ -154,6 +154,9 @@ st.markdown("""
 """)
 
 load_dotenv()
+# Ustaw USER_AGENT dla web scraperów
+if "USER_AGENT" not in os.environ:
+    os.environ["USER_AGENT"] = "Mozilla/5.0 (compatible; PDFRagChatbot/1.0)"
 HF_TOKEN = os.environ.get("HUGGINGFACE_API_TOKEN", "")
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
@@ -298,10 +301,10 @@ def ask_llm_RAG(question, vectorstore, selected_pdfs, detail_level="Standard"):
     retrieval_quality = {"top_hybrid": float(top_hybrid), "threshold": QUALITY_THRESHOLD, "is_low_quality": bool(top_hybrid < QUALITY_THRESHOLD or len(relevant_docs) == 0)}
     context = "\n\n".join([doc.page_content for doc in relevant_docs])
     extra_rule = "\nFor yes/no questions, the answer should be max 3 sentences." if question.strip().lower().startswith("czy") else ""
-    base_rule = "Write in Polish, correct language, no spelling or grammar errors. Don't make up facts outside documents."
-    style_rules = {"ELI5": base_rule + " Explain simply, short sentences.", "Expert": base_rule + " Use correct terminology."}
-    style_rule = style_rules.get(detail_level.split()[0], base_rule + " Explain clearly and concisely.")
-    prompt = f"""You are a helpful assistant analyzing PDF documents.\n{history_block}\nUser question: {question}\n\nPDF context:\n{context}\n\n{style_rule}{extra_rule}\n\nResponse rules:\n1. Answer the main question in 1-2 sentences.\n2. Max 2-3 bullet points with document reference if relevant.\n3. Don't paste long OCR quotes – paraphrase.\n4. If answer not in documents, say so clearly.\n5. Use correct, natural Polish.\n\nAnswer in Polish:"""
+    baserule = "Respond in the same language as the user's question. Write correctly, no spelling or grammar errors. Don't make up facts outside documents."
+    style_rules = {"ELI5": baserule + " Explain simply, short sentences.", "Expert": baserule + " Use correct terminology."}
+    style_rule = style_rules.get(detail_level.split()[0], baserule + " Explain clearly and concisely.")
+    prompt = f"""You are a helpful assistant analyzing PDF documents.\n{history_block}\nUser question: {question}\n\nPDF context:\n{context}\n\n{style_rule}{extra_rule}\n\nResponse rules:\n1. Answer the main question in 1-2 sentences.\n2. Max 2-3 bullet points with document reference if relevant.\n3. Don't paste long OCR quotes – paraphrase.\n4. If answer not in documents, say so clearly.\n5. Use correct, natural language.\n\nAnswer in the same language as the question:"""
     client, model_name = get_llm_client()
     max_tokens = 700 if "Learning quiz" in question else 1024
     try:
